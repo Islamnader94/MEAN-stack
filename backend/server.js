@@ -2,11 +2,11 @@ let express = require('express');
 let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
-let dbConfig = require('./database/db');
+let dbConfig = require('./database/DB');
 var createError = require('createerror');
 
 // Express Route
-const usersRoute = require('../backend/routes/users.route')
+const usersRoute = require('./routes/users.route')
 
 // Connecting mongoDB Database
 mongoose.Promise = global.Promise;
@@ -30,7 +30,7 @@ app.use('/user', usersRoute)
 
 
 // PORT
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })

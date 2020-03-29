@@ -1,0 +1,25 @@
+version: '2' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+ angular: # name of the first service
+    build: full-stack-angular # specify the directory of the Dockerfile
+    ports:
+        - "4200:4200" # specify port forewarding
+ mongodb:
+    image: mongo
+    container_name: database_container
+    ports:
+     - "27017:27017"
+    command: mongod
+ server: #name of the second service
+    build: backend # specify the directory of the Dockerfile
+    ports:
+        - "3000:3000"
+    links:
+        - mongodb
+    depends_on:
+        - mongodb
+volumes:
+    mongodb:
+    mongodb_config:
